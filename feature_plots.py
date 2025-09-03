@@ -7,23 +7,44 @@ from matplotlib.ticker import PercentFormatter
 # ---------- helpers ----------
 def summarize_features_cat(df, feature, y_col, y_pred_col=None, levels=None, sort_levels=True):
     if levels is None:
-        levels = df[feature].dropna().unique()
+        levels = list(df[feature].dropna().unique())
         if sort_levels:
             try:
-                levels = sorted(levels, key=float)  # numeric-like categories
+                levels = sorted(levels, key=float)
             except Exception:
-                levels = sorted(levels)             # strings
+                levels = sorted(levels)
 
     counts = df[feature].value_counts().reindex(levels, fill_value=0)
-    obs = df.groupby(feature, observed=True)[y_col].mean().reindex(levels, fill_value=0.0)
+
+    # Calculate y mean
+    try:
+        obs = (
+            df.groupby(feature, observed=True)[y_col]
+              .mean()
+              .reset_index()
+              .set_index(feature)[y_col]
+              .reindex(levels, fill_value=0.0)
+        )
+    except Exception:
+        obs = df.groupby(feature, observed=True)[y_col].mean()
 
     pred = None
     if y_pred_col and y_pred_col in df.columns:
-        pred = df.groupby(feature, observed=True)[y_pred_col].mean().reindex(levels, fill_value=0.0)
+        try:
+            pred = (
+                df.groupby(feature, observed=True)[y_pred_col]
+                  .mean()
+                  .reset_index()
+                  .set_index(feature)[y_pred_col]
+                  .reindex(levels, fill_value=0.0)
+            )
+        except Exception:
+            pred = df.groupby(feature, observed=True)[y_pred_col].mean()
 
     x_pos = levels
     bar_widths = None
     return counts, obs, pred, x_pos, bar_widths
+
 
 def _interval_mids_and_widths(interval_index):
     left = np.array([iv.left for iv in interval_index], dtype=float)
