@@ -90,10 +90,6 @@ def _plot_left(ax, x_pos, counts, obs, pred=None, feature="", bar_widths=None, y
     ax.set_title(f'{feature} vs. Percent {y_col}=1')
 
     ax_line = ax.twinx()
-    ax_line.set_ylabel(f'Percent {y_col}=1')
-    ax_line.set_ylim(0, 1)
-    ax_line.yaxis.set_major_formatter(PercentFormatter(1.0))
-
     handles = []
     for series, label in [(obs, 'Observed'), (pred, 'Predicted')]:
         if series is None: 
@@ -102,6 +98,11 @@ def _plot_left(ax, x_pos, counts, obs, pred=None, feature="", bar_widths=None, y
         handles.append(ln)
     if handles:
         ax_line.legend(handles=handles, loc='upper left')
+
+    ax_line.set_ylabel(f'Percent {y_col}=1')
+    ax_line.yaxis.set_major_formatter(PercentFormatter(1.0))
+    ax_line.set_ylim(0, obs.max() + 0.05)
+    ax_line.set_autoscaley_on(False)
 
 def _plot_boxplot(ax, df, feature, y_col):
     try:
