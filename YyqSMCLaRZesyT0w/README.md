@@ -24,7 +24,7 @@ max_delta_step = 1
 scale_pos_weight = 12.6
 ```
 **Comparison of ROC-AUC Across Models**
-![ROC Curve](roc_auc_comparison.png)
+![ROC Curve](figs/roc_auc_comparison.png)
 
 **Performance Summary**
 - XGBoost achieved the **highest AUC-PR** and **ROC-AUC** values.
@@ -35,29 +35,34 @@ scale_pos_weight = 12.6
 
 ## Feature Importance Insights (Based on XGBoost Model)
 
-<div style="display: flex; align-items: flex-start; gap: 20px;">
+<table style="width:100%;">
+  <tr>
+    <td style="vertical-align:top;">
+      <img src="figs/beeswarm_plot_xg.png" alt="SHAP Beeswarm Plot"
+     style="width:auto; height:100%; display:block; margin:auto;">
+    </td>
+    <td style="width:50%; vertical-align:top;">
+      <table>
+        <thead>
+          <tr><th>Rank</th><th>Feature</th><th>Global Influence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><b>duration_log</b></td><td>Longer call duration increases likelihood; short calls decrease it.</td></tr>
+          <tr><td>2</td><td><b>month</b></td><td>Later-year calls more likely to convert than early-year.</td></tr>
+          <tr><td>3</td><td><b>day</b></td><td>Later-month calls modestly more successful.</td></tr>
+          <tr><td>4</td><td><b>campaign</b></td><td>More contact attempts reduce success; fewer help.</td></tr>
+          <tr><td>5</td><td><b>balance</b></td><td>Higher balances modestly increase likelihood.</td></tr>
+          <tr><td>6</td><td><b>housing</b></td><td>No housing loan slightly increases likelihood.</td></tr>
+          <tr><td>7</td><td><b>age_log</b></td><td>Older customers slightly more likely to subscribe.</td></tr>
+          <tr><td>8</td><td><b>contact_cellular</b></td><td>Cellular contact marginally improves success.</td></tr>
+          <tr><td>9</td><td><b>marital_married</b></td><td>Small positive influence.</td></tr>
+          <tr><td>10</td><td><b>job_blue-collar</b></td><td>Slight reduction in likelihood.</td></tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
 
-  <div style="flex: 1;">
-    <img src="beeswarm_plot_xg.png" alt="SHAP Beeswarm Plot" width="450">
-  </div>
-
-  <div style="flex: 1;">
-
-| Rank | Feature | Global Influence |
-|------|----------|------------------|
-| 1 | **duration_log** | Longer call duration strongly increases the likelihood of subscription; short calls sharply decrease it. |
-| 2 | **month** | Calls made later in the year are more likely to lead to a subscription than those made earlier. |
-| 3 | **day** | Calls made later in the month tend to have a higher success rate, though the effect is moderate. |
-| 4 | **campaign** | More contact attempts generally reduce the chance of success; fewer contacts slightly improve it. |
-| 5 | **balance** | Higher customer account balances modestly increase the likelihood of subscription. |
-| 6 | **housing** | Customers without a housing loan are somewhat more likely to subscribe. |
-| 7 | **age_log** | Older customers show a slight tendency toward subscription, though the effect is weaker. |
-| 8 | **contact_cellular** | Contacting customers via cellular service marginally improves success compared to other methods. |
-| 9 | **marital_married** | Married customers show a small positive influence on subscription likelihood. |
-| 10 | **job_blue-collar** | Blue-collar occupations slightly reduce the chance of subscription. |
-
-  </div>
-</div>
 
 
 ---
