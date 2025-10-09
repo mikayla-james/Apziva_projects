@@ -24,7 +24,9 @@ max_delta_step = 1
 scale_pos_weight = 12.6
 ```
 **Comparison of ROC-AUC Across Models**
-![ROC Curve](figs/roc_auc_comparison.png)
+<p align="center">
+  <img src="roc_auc_comparison.png" alt="ROC Curve" width="60%">
+</p>
 
 **Performance Summary**
 - XGBoost achieved the **highest AUC-PR** and **ROC-AUC** values.
@@ -39,9 +41,9 @@ scale_pos_weight = 12.6
   <tr>
     <td style="vertical-align:top;">
       <img src="figs/beeswarm_plot_xg.png" alt="SHAP Beeswarm Plot"
-     style="width:auto; height:100%; display:block; margin:auto;">
+     style="width:auto%; height:380px; display:block; margin:auto;">
     </td>
-    <td style="width:50%; vertical-align:top;">
+    <td style="width:40%; vertical-align:top;">
       <table>
         <thead>
           <tr><th>Rank</th><th>Feature</th><th>Global Influence</th></tr>
