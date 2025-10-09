@@ -2,7 +2,7 @@
 
 ## Project Objective
 This project aimed to build and evaluate predictive models that identify customers most likely to subscribe to a **term deposit**.  
-Primary performance metric: **AUC-PR (Average Precision)**, emphasizing precision–recall balance for the minority (positive) class.
+Primary performance metric: **F1**, emphasizing precision–recall balance for the minority (positive) class.
 
 ---
 
@@ -23,7 +23,7 @@ gamma = 0.26
 max_delta_step = 1
 scale_pos_weight = 12.6
 ```
-**Models ROC-AUC**
+**Comparison of ROC-AUC Across Models**
 ![ROC Curve](roc_auc_comparison.png)
 
 **Performance Summary**
@@ -33,24 +33,32 @@ scale_pos_weight = 12.6
 
 ---
 
-## Feature Importance Insights
+## Feature Importance Insights (Based on XGBoost Model)
 
-Analysis combined **model-derived importance** and **SHAP interpretability** to ensure transparency.
+<div style="display: flex; align-items: flex-start; gap: 20px;">
 
-| Rank | Feature | Influence Summary |
-|------|----------|-------------------|
-| 1 | **Duration** | Strongest positive effect. Longer call durations increased likelihood of subscription. |
-| 2 | **Poutcome_success** | Prior successful outcomes strongly predicted future success. |
-| 3 | **Previous (contacts)** | Moderate positive effect; diminishing returns after many contacts. |
-| 4 | **Contact Type** | Cellular contacts outperformed traditional calls. |
-| 5 | **Age** | Older customers showed slightly higher conversion rates. |
-| 6 | **Balance & Education** | Socioeconomic indicators had moderate influence. |
+  <div style="flex: 1;">
+    <img src="beeswarm_plot_xg.png" alt="SHAP Beeswarm Plot" width="450">
+  </div>
 
-Negative influences included **default = yes** and excessive prior contacts.
+  <div style="flex: 1;">
 
-**Interpretability Tools Used**
-- **SHAP Waterfall plots** for per-customer explanations.
-- **Tree-based importance plots** for global ranking.
+| Rank | Feature | Global Influence |
+|------|----------|------------------|
+| 1 | **duration_log** | Longer call duration strongly increases the likelihood of subscription; short calls sharply decrease it. |
+| 2 | **month** | Calls made later in the year are more likely to lead to a subscription than those made earlier. |
+| 3 | **day** | Calls made later in the month tend to have a higher success rate, though the effect is moderate. |
+| 4 | **campaign** | More contact attempts generally reduce the chance of success; fewer contacts slightly improve it. |
+| 5 | **balance** | Higher customer account balances modestly increase the likelihood of subscription. |
+| 6 | **housing** | Customers without a housing loan are somewhat more likely to subscribe. |
+| 7 | **age_log** | Older customers show a slight tendency toward subscription, though the effect is weaker. |
+| 8 | **contact_cellular** | Contacting customers via cellular service marginally improves success compared to other methods. |
+| 9 | **marital_married** | Married customers show a small positive influence on subscription likelihood. |
+| 10 | **job_blue-collar** | Blue-collar occupations slightly reduce the chance of subscription. |
+
+  </div>
+</div>
+
 
 ---
 
