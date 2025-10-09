@@ -39,9 +39,9 @@ scale_pos_weight = 12.6
 
 <table style="width:100%;">
   <tr>
-    <td style="vertical-align:top;">
+    <td style="vertical-align:center;">
       <img src="figs/beeswarm_plot_xg.png" alt="SHAP Beeswarm Plot"
-     style="width:auto%; height:380px; display:block; margin:auto;">
+     style="width:auto%; height:390px; display:block; margin:auto;">
     </td>
     <td style="width:40%; vertical-align:top;">
       <table>
