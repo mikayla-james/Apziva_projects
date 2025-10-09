@@ -10,22 +10,21 @@ Primary performance metric: **AUC-PR (Average Precision)**, emphasizing precisio
 
 Three models were developed and compared:
 
-| Model | Key Strength | Summary of Test Performance |
-|-------|---------------|-----------------------------|
-| **Logistic Regression** | Simple baseline, interpretable coefficients | Precision: 0.12 Recall: 0.49 F1-Score: 0.20 Accuracy: 0.66 |
-| **Random Forest** | Nonlinear model capturing complex relationships | Precision: 0.51 Recall: 0.73 F1-Score: 0.60 Accuracy: 0.92 |
-| **XGBoost** | Optimized gradient-boosted ensemble, best precision–recall balance | Highest AUC-PR among all models (clear dominance over Random Forest and Logistic Regression) |
+| Model | Summary of Test Performance |
+|-------|-----------------------------|
+| **Logistic Regression** | Precision: 0.12 Recall: 0.49 F1-Score: 0.20 Accuracy: 0.66 |
+| **Random Forest**  | Precision: 0.51 Recall: 0.73 F1-Score: 0.60 Accuracy: 0.92 |
+| **XGBoost** | Precision: 0.51 Recall: 0.73 F1-Score: 0.60 Accuracy: 0.92 |
 
-**Random Forest Best Parameters:**
+**XGBoost Best Parameters:**
 ```
-n_estimators = 600
-max_depth = 24
-min_samples_split = 5
-min_samples_leaf = 4
-max_features = 0.5
-max_samples = 0.5
-oob_score = True
+learning_rate = 0.20
+gamma = 0.26
+max_delta_step = 1
+scale_pos_weight = 12.6
 ```
+**Models ROC-AUC**
+![ROC Curve](roc_auc_comparison.png)
 
 **Performance Summary**
 - XGBoost achieved the **highest AUC-PR** and **ROC-AUC** values.
