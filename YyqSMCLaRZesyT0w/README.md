@@ -25,7 +25,7 @@ scale_pos_weight = 12.6
 ```
 **Comparison of ROC-AUC Across Models**
 <p align="center">
-  <img src="roc_auc_comparison.png" alt="ROC Curve" width="60%">
+  <img src="figs/roc_auc_comparison.png" alt="ROC Curve" width="60%">
 </p>
 
 **Performance Summary**
