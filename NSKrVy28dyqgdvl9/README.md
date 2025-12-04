@@ -22,7 +22,7 @@ Predict whether a single frame contains the action of a page flip.
 ## Model
 
 2-D Convolutional Model
-<img src="NSKrVy28dyqgdvl9/model_summary.png" alt="Model Summary" width="450">
+<img src="model_summary.png" alt="Model Summary" width="450">
 
 
 ## Results
