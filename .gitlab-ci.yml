@@ -20,6 +20,7 @@ test:
   image: python:3.10
   stage: test
   script:
+    - echo "This job tests something"
     - pip install pytest numpy pandas torch transformers datasets scikit-learn Pillow
     - pytest MonReader/tests/ -v --tb=short
   allow_failure: true  # Remove this once you have real tests
