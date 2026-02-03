@@ -1,0 +1,25 @@
+stages:
+  - lint
+  - test
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
+cache:
+  paths:
+    - .pip-cache/
+
+lint:
+  image: python:3.10
+  stage: lint
+  script:
+    - pip install flake8
+    - flake8 MonReader/ --max-line-length=120 --ignore=E501,W503
+
+test:
+  image: python:3.10
+  stage: test
+  script:
+    - pip install pytest numpy pandas torch transformers datasets scikit-learn Pillow
+    - pytest MonReader/tests/ -v --tb=short
+  allow_failure: true  # Remove this once you have real tests
