@@ -22,5 +22,5 @@ test:
   script:
     - echo "This job tests something"
     - pip install pytest numpy pandas torch transformers datasets scikit-learn Pillow
-    - pytest MonReader/tests/ -v --tb=short
+    - pytest MonReader/test/ -v --tb=short
   allow_failure: true  # Remove this once you have real tests

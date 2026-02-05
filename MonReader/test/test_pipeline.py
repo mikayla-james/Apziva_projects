@@ -3,7 +3,12 @@ def test_imports():
     import torch
     import transformers
     import numpy as np
-    assert True
+
+    # Actually "use" them so flake8 is happy
+    assert torch is not None
+    assert transformers is not None
+    assert np is not None
+
 
 def test_label_mapping():
     """Test that label mappings are consistent."""
