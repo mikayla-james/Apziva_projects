@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "cryto_bot"
+version = "0.0.1"
+description = "Building a smart Bitcoin trading system using the Binance US API and Freqtrade as the skeleton framework. Currently have the foundation in place with Telegram trade notifications and 24/7 cloud deployment capabilities. The goal is to implement Dollar-Cost Averaging (DCA) for passive accumulation, ATR-based dynamic stop-losses for active trades, multi-strategy switching (day trading, swing trading, value investing), a lightweight LLM for adaptive decision-making, configurable budgets and risk parameters stored in a Google Sheet with local JSON fallback, a global portfolio safeguard to pause trading on major drawdowns, and weekly email reports sent every Monday at 9:00 AM via Gmail. All thresholds and strategy logic are user-configurable."
+authors = [
+  { name = "Mikayla James -Apziva" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+requires-python = "~=3.10.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["cryto_bot"]
+include = ["pyproject.toml", "cryto_bot/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["cryto_bot"]
+force-sort-within-sections = true
+
