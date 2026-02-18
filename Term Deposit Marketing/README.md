@@ -1,4 +1,4 @@
-# Client Summary Report
+# Term Deposit Marketing
 
 ## Project Objective
 This project aimed to build and evaluate predictive models that identify customers most likely to subscribe to a **term deposit**.  
